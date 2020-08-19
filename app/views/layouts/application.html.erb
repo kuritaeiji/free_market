@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FreemarketApp</title>
+    <title><%= yield(:title) || 'フリマ' %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_pack_tag 'main.js' %>
@@ -9,6 +9,8 @@
   </head>
 
   <body>
+    <%= render('layouts/header') %>
     <%= yield %>
+    <%= render('layouts/footer') %>
   </body>
 </html>
