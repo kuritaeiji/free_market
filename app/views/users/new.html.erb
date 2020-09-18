@@ -1,0 +1,68 @@
+<%= provide(:title, '新規登録') %>
+
+<div class="container users-form">
+  <h1>新規登録</h1>
+
+  <%= form_with(model: @user) do |f| %>
+
+    <%= render('layouts/error_messages', object: @user) %>
+
+    <div class="row form-group">
+      <%= f.label(:email, class: "col-md-3") %>
+      <%= f.email_field(:email, class: "col-md-9 form-control") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:password, class: "col-md-3") %>
+      <%= f.password_field(:password, class: "col-md-9 form-control") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:password_confirmation, class: "col-md-3") %>
+      <%= f.password_field(:password_confirmation, class: "col-md-9 form-control") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:image, class: "col-md-3") %>
+      <%= f.file_field(:image, class: "col-md-9 form-control-file") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:nickname, class: "col-md-3") %>
+      <%= f.text_field(:nickname, class: "col-md-9 form-control") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:family_name, class: "col-md-3") %>
+      <%= f.text_field(:family_name, class: "col-md-9 form-control") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:first_name, class: "col-md-3") %>
+      <%= f.text_field(:first_name, class: "col-md-9 form-control") %>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:postal_code, class: "col-md-3") %>
+      <%= f.text_field(:postal_code, class: "col-md-9 form-control", 'v-model': 'user.postalCode') %>
+    </div>
+
+    <button class="btn btn-primary" @click.prevent="searchAddress">住所検索</button>
+
+    <div class="row form-group">
+      <%= f.label(:prefecture_id, class: "col-md-3") %>
+      <%= f.select(:prefecture_id, prefecture_options(@prefectures), class: 'form-control')%>
+    </div>
+
+    <div class="row form-group">
+      <%= f.label(:address, class: "col-md-3") %>
+      <%= f.text_field(:address, class: "col-md-9 form-control", 'v-model': 'user.address') %>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <%= f.submit('登録', class: "btn btn-primary text-center") %>
+    </div>
+  <% end %>
+</div>
+
+<%= javascript_pack_tag('views/users/new.js') %>
