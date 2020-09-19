@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    binding.pry
     if @user.save
       flash[:success] = '認証メールを送信しました。'
       redirect_to(root_url)
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by(params[:id])
+      @user = User.find(params[:id])
     end
 
     def set_prefectures

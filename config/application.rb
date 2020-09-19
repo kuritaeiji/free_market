@@ -20,10 +20,16 @@ module FreemarketApp
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
-    config.generators do |g|  # ここから追記
-      g.assets false          # CSS, JavaScriptファイル生成せず
-      g.skip_routes false     # trueならroutes.rb変更せず、falseなら通常通り変更
-      g.test_framework false  # testファイル生成せず
-    end                       # ここま
+    config.generators do |g|
+      g.assets false
+      g.skip_routes false
+      g.test_framework false
+
+      g.test_framework :rspec,
+        view_specs: false,
+        helper_specs: false,
+        controller_specs: false,
+        routing_specs: false
+    end
   end
 end
